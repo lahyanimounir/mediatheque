@@ -79,24 +79,24 @@ public class CRUD_Client {
         int nbUpdated = stmt.executeUpdate(query);
         return nbUpdated>0;
     }
-    /*Client getEtudiantbyCin( String cin) throws SQLException{
+    Client getUserByCin( String cin , String profile) throws SQLException{
        Statement stmt = con.createStatement();
-       ResultSet rs = stmt.executeQuery("select * from etudiant where cin like '"+cin+"' ");
+       ResultSet rs = stmt.executeQuery("select * from users where cin = '"+cin+"' and profile = '"+profile+"'");
        Etudiant e= null;
 
     while (rs.next()) {
-        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"));
+        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
     }
     return e;
     }
     
-     Client getEtudiantbyCne( String cne) throws SQLException{
+   Client getEtudiantbyCne( String cne) throws SQLException{
        Statement stmt = con.createStatement();
-       ResultSet rs = stmt.executeQuery("select * from etudiant where cne like '"+cne+"' ");
+       ResultSet rs = stmt.executeQuery("select * from users where cne = '"+cne+"' and profile = 'etudiant'");
        Etudiant e= null;
 
     while (rs.next()) {
-        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"));
+        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
     }
     return e;
     }
@@ -104,10 +104,10 @@ public class CRUD_Client {
     LinkedList<Etudiant> getAllEtudiants() throws SQLException{
     
     Statement stmt = con.createStatement();
-    ResultSet rs = stmt.executeQuery("select * from etdudiant");
+    ResultSet rs = stmt.executeQuery("select * from users where profile = 'etudiant'");
     LinkedList<Etudiant> Liste= new  LinkedList<> ();
     while (rs.next()) {
-      Etudiant e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"));
+      Etudiant e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
       Liste.add(e);
 
     }
@@ -115,7 +115,7 @@ public class CRUD_Client {
     }
     
     
-    boolean Modifier(Client c) throws SQLException{
+   /*   boolean Modifier(Client c) throws SQLException{
     Statement stmt = con.createStatement();
     String query="";
     

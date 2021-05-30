@@ -18,10 +18,19 @@ import com.mycompany.mediatheque.model.Professeur;
 public class Mediatheque {
     
     public static void main(String[] args) throws SQLException{
-       Etudiant etd = new Etudiant("myClient","123456","A875","nom","prenom","85751","GL");
-       
+        /*add ETD*/
+     /*  Etudiant etd = new Etudiant("myClient","123456","A875","nom","prenom","85751","GL");
        CRUD_Client CRL= new CRUD_Client();
-       CRL.Ajouter(etd);
+       CRL.Ajouter(etd);*/
+       
+       /*read ETD*/
+      /* CRUD_Client CRL= new CRUD_Client();
+       System.out.print(CRL.getEtudiantbyCne("85751"));*/
+         
+       
+      
+      
+      
        /*Professeur p= new Professeur("professeur1", "123456", "a1258", "saad", "belefqih", "123985");
        System.out.println("ICI getEtudiantbyCin 1");
        System.out.println(p.toString());
