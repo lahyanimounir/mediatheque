@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Client extends Utilisateur implements Serializable {
     
-    protected String cin;
+    private String cin;
     private String nom;
     private String prenom;
     

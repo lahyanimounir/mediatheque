@@ -10,10 +10,14 @@ package com.mycompany.mediatheque.model;
  * @author rachad
  */
 public class Etudiant extends Client{
+    private int id;
     private String cne;
-    public Etudiant(String login, String password, String cin, String  nom, String  prenom, String cne){
+    private String fillier;
+    
+    public Etudiant(String login, String password, String cin, String  nom, String  prenom, String cne,String fillier){
         super(login, password, cin, nom, prenom);
-        this.cne= new String(cne);
+        this.cne= new String(cne);        
+        this.fillier= new String(fillier);
     }
     
     @Override
@@ -24,6 +28,15 @@ public class Etudiant extends Client{
     public String getCne() {
         return cne;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFillier() {
+        return fillier;
+    }
+    
       
             
 }

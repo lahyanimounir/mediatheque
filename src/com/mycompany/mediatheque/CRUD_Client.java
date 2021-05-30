@@ -10,7 +10,9 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import com.mycompany.mediatheque.model.Client;
 import com.mycompany.mediatheque.model.Etudiant;
+import com.mycompany.mediatheque.model.Gerant;
 import com.mycompany.mediatheque.model.Professeur;
+import com.mycompany.mediatheque.model.Utilisateur;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,33 +36,50 @@ public class CRUD_Client {
 }
 
      
-    boolean Ajouter(Client c) throws SQLException{
+    boolean Ajouter(Utilisateur c) throws SQLException{
     Statement stmt = con.createStatement();
     String query="";
-    
-    if (c instanceof Etudiant){
-      query=" insert into etudiant (cin,cne,nom,prenom,login,password) values ('"+c.getCin()+"','"+
-             ((Etudiant) c).getCne()+
-             "','"+c.getNom()+
-             "','"+c.getPrenom()+
-             "','"+c.getLogin()+
-             "','"+c.getPassword()+"')";
+    /* profile => etudiant, proffesseur,gerant */
+    /* role => droit d'accees role_etudiant, role_proffesseur,role_gerant */
+    if (c instanceof  Etudiant){
+        query= "INSERT INTO `users`( `password`, `login`, `cin`, `cne`, `nom`, `prenom`, `profile`, `role`, `fillier`) VALUES( "
+                +"'"+ c.getPassword()+"',"+ 
+                "'"+ c.getLogin()+"',"+ 
+                "'"+ ((Client)c).getCin()+"',"+ 
+                "'"+ ((Etudiant)c).getCne()+"',"+ 
+                "'"+ ((Client)c).getNom()+"',"+ 
+                "'"+ ((Client)c).getPrenom()+"',"+ 
+                "'etudiant','role_etudiant',"+ 
+                "'"+ ((Etudiant)c).getFillier()+"')";
+                System.out.print(query);
+    }else if(c instanceof Gerant){
+        
+          query= "INSERT INTO `users`( `password`, `login`, `cin`, `cne`, `nom`, `prenom`, `profile`, `role`, `fillier`) VALUES( "
+                +"'"+ c.getPassword()+"',"+ 
+                "'"+ c.getLogin()+"',"+ 
+                "'"+ ((Client)c).getCin()+"',"+ 
+                "'"+ ((Client)c).getNom()+"',"+ 
+                "'"+ ((Client)c).getPrenom()+"',"+ 
+                "',gerant','role_gerant')'";
+          
     }
+    
     else  if (c instanceof Professeur){
-      query=" insert into professeur (cin,matricule,nom,prenom,login,password) values ('"+c.getCin()+"','"+
-             ((Professeur) c).getMatricule()+
-             "','"+c.getNom()+
-             "','"+c.getPrenom()+
-             "','"+c.getLogin()+
-             "','"+c.getPassword()+"')";
-    }
-    
-    int nbUpdated = stmt.executeUpdate(query);
-    return nbUpdated>0;
+      query= "INSERT INTO `users`( `password`, `login`, `cin`, `matricule`, `nom`, `prenom`, `profile`, `role`) VALUES( "
+                +"'"+ c.getPassword()+"',"+ 
+                "'"+c.getLogin()+"',"+ 
+                "'"+((Client)c).getCin()+"',"+ 
+                "'"+((Professeur)c).getMatricule()+"',"+
+                "'"+((Client)c).getNom()+"',"+ 
+                "'"+((Client)c).getPrenom()+"',"+ 
+                "',proffesseur','role_proffesseur')";
     
     }
     
-    Client getEtudiantbyCin( String cin) throws SQLException{
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated>0;
+    }
+    /*Client getEtudiantbyCin( String cin) throws SQLException{
        Statement stmt = con.createStatement();
        ResultSet rs = stmt.executeQuery("select * from etudiant where cin like '"+cin+"' ");
        Etudiant e= null;
@@ -137,7 +156,7 @@ public class CRUD_Client {
     int nbUpdated = stmt.executeUpdate(query);
     return nbUpdated>0;
     }
-    
+    */
   
     
     
