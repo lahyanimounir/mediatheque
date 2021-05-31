@@ -24,6 +24,7 @@ public class Mediatheque {
        CRUD_Client CRL= new CRUD_Client();
        CRL.Ajouter(etd);*/
        
+      
        /*read ETD*/
     /*    CRUD_Client CRL= new CRUD_Client();
        System.out.print(CRL.getUserByCin("A123","etudiant"));
@@ -34,14 +35,17 @@ public class Mediatheque {
        
     
     
+      
+
+      /*Livre livre = new Livre("titreLivre","Soumya",1,"isbn","auteurs","url",2);*/
+     /* CRD.Ajouter(livre, "livre");
+      CRD.Modifier(livre, "magasin",1);   
+      CRD.supprimer(1); */  
+     
         /*Crud Document*/
       CRUD_Document CRD = new CRUD_Document();
-     
-      Livre livre = new Livre("titreLivre","Soumya",1,"isbn","auteurs","url",2);
-      /*CRD.Ajouter(livre, "livre");
-      CRD.Modifier(livre, "magasin",1);*/
-      
-      
+      /*System.out.print(CRD.getAllDocuments());*/
+      System.out.print(CRD.getDucumentByTitle("titreLivre"));
        /*Professeur p= new Professeur("professeur1", "123456", "a1258", "saad", "belefqih", "123985");
        System.out.println("ICI getEtudiantbyCin 1");
        System.out.println(p.toString());

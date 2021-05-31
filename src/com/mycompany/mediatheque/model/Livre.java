@@ -12,8 +12,8 @@ package com.mycompany.mediatheque.model;
 public class Livre extends Document {
     private int nbPages;
  
-    public Livre(String titre, String editeur,int edition,String isbn,String auteurs, String url,  int nbPages){
-        super(titre,  editeur, edition, isbn, auteurs, url);
+    public Livre(String titre, String editeur,int edition,String isbn,String auteurs, String url,  int nbPages,String type_doc){
+        super(titre,  editeur, edition, isbn, auteurs, url, type_doc);
         this.nbPages=nbPages;
     }
 

@@ -12,8 +12,8 @@ import java.util.Date;
  * @author rachad
  */
 public class Emprunt {
-    private static int n=0;
-    private final int id;
+   
+   
     private Client client;
     private Kindel kindel;
     private Date date_emprunt;
@@ -24,7 +24,7 @@ public class Emprunt {
         this.kindel= new Kindel(kindel);
         date_emprunt= new Date();
         date_retour=null;
-        id=++n;
+   
     }
 
     public Client getClient() {

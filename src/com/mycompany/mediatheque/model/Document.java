@@ -18,18 +18,22 @@ public abstract class Document implements Serializable {
     private int edition;
     private String isbn;
     private String auteurs;
-    private String url;
+    private String url;    
+    private String type_doc;
+
     
     
     
-    public Document(String titre, String editeur,int edition,String isbn,String auteurs, String url){
+    public Document(String titre, String editeur,int edition,String isbn,String auteurs, String url, String type_doc){
       
         this.titre= new String(titre);
         this.editeur= new String(editeur);
         this.edition=edition;
         this.isbn=new String(isbn);
         this.auteurs=new String(auteurs); 
-        this.url= new String(url);
+        this.url= new String(url);        
+        this.type_doc= new String(type_doc);
+
     }
 
   
@@ -61,11 +65,14 @@ public abstract class Document implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public String getType_doc() {
+        return type_doc;
+    }
     
     @Override
     public String toString(){
-       
-        return "Titre: "+ titre+" Editeur:"+ editeur+ " Edition:"+ edition+ "ISBN:"+isbn +" Auteurs :"+auteurs;
+        return "Titre: "+ titre+" Editeur:"+ editeur+ " Edition:"+ edition+ "ISBN:"+isbn +" Auteurs :"+auteurs + " type_doc: " +type_doc;
     }
     
     

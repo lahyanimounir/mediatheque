@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import com.mycompany.mediatheque.model.Document;
+import com.mycompany.mediatheque.model.Etudiant;
 import com.mycompany.mediatheque.model.Livre;
 
 /*
@@ -74,6 +75,51 @@ public class CRUD_Document {
     return nbUpdated>0;
     }
      
+     
+    LinkedList<Livre> getAllDocuments() throws SQLException{
+    
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from doc ");
+        LinkedList<Livre> Liste= new  LinkedList<> ();
+        while (rs.next()) {
+           int variable = Integer. parseInt(rs.getString("edition"));
+          Livre l=new Livre(rs.getString("titre"),rs.getString("editeur"),variable,rs.getString("isbn"),rs.getString("auteur"),rs.getString("url"),rs.getInt("nbPages"),rs.getString("type_doc"));
+          Liste.add(l);
+
+        }
+         return Liste;
+    }
+
+     
+    boolean supprimer(int id) throws SQLException{
+        
+        
+        Statement stmt = con.createStatement();
+        String query="";
+    
+    
+      query=" DELETE FROM doc WHERE id = '"+id+"' ";
+   
+    
+    int nbUpdated = stmt.executeUpdate(query);
+    return nbUpdated>0;
+    }
+    
+    
+       LinkedList<Livre> getDucumentByTitle( String titre) throws SQLException{
+       Statement stmt = con.createStatement();
+       ResultSet rs = stmt.executeQuery("select * from doc where titre = '"+titre+"'");
+       
+       LinkedList<Livre> myListe= new  LinkedList<> ();
+       
+       while (rs.next()) {
+           int variable = Integer. parseInt(rs.getString("edition"));
+          Livre l=new Livre(rs.getString("titre"),rs.getString("editeur"),variable,rs.getString("isbn"),rs.getString("auteur"),rs.getString("url"),rs.getInt("nbPages"),rs.getString("type_doc"));
+          myListe.add(l);
+
+        }
+         return myListe;
+    }
 
     
 }
