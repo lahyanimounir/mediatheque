@@ -4,6 +4,7 @@ import com.mycompany.mediatheque.config.Config_DATABASE;
 import com.mycompany.mediatheque.model.Kindel;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -53,5 +54,18 @@ public class CRUD_Kindel {
 
         int nbUpdated = stmt.executeUpdate(query);
         return nbUpdated > 0;
+    }
+
+    int getFirstAvailKindle() throws SQLException {
+        Statement stmt = con.createStatement();
+        String query = "SELECT * FROM kindel WHERE emprunte = 0 LIMIT 1";
+
+        ResultSet rs = stmt.executeQuery(query);
+        int id = 0;
+        while (rs.next()) {
+            id = rs.getInt("id");
+        }
+
+        return id;
     }
 }

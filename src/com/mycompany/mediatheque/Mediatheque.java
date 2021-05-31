@@ -69,10 +69,22 @@ public class Mediatheque {
        System.out.println(CRL.getEtudiantbyCin("A875"));*/
        
        CRUD_Kindel KND = new CRUD_Kindel();
-     
-       Kindel kindle = new Kindel("green2iot", "00:11:22:33:44:55", 10);
-       KND.Modifier(kindle, 1);
-       //KND.Ajouter(kindle);
+       
+       System.out.println("ID Kindle " + KND.getFirstAvailKindle());
+       
+     /*
+       Kindel kindle1 = new Kindel("green6iot", "00:11:22:33:55:55", 10);
+       Kindel kindle2 = new Kindel("green3iot", "00:11:22:33:66:55", 10);
+       Kindel kindle3 = new Kindel("green4iot", "00:11:22:33:77:55", 7);
+       Kindel kindle4 = new Kindel("green5iot", "00:11:22:33:88:55", 8);
+       
+       // KND.Modifier(kindle, 1);
+       KND.Ajouter(kindle1);
+       KND.Ajouter(kindle2);
+       KND.Ajouter(kindle3);
+       KND.Ajouter(kindle4);*/
+       
+       
     }
     
 }
