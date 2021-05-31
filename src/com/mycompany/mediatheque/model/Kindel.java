@@ -15,20 +15,20 @@ public class Kindel implements Serializable {
     String modele;
     String mac;
     float pouces;
-    boolean emprunte;
+    int emprunte;
     
     public Kindel(String modele, String mac, float pouces){
         this.modele= new String(modele);
         this.mac= new String(mac);
         this.pouces= pouces;
-        emprunte=false;
+        this.emprunte=0;
     }
     
       public Kindel(Kindel kindel){
         this.modele= new String(kindel.getModele());
         this.mac= new String(kindel.getMac());
         this.pouces= kindel.getPouces();
-        emprunte=false;
+        this.emprunte=0;
     }
     
     
@@ -45,11 +45,11 @@ public class Kindel implements Serializable {
         return pouces;
     }
 
-    public boolean isEmprunte() {
+    public int isEmprunte() {
         return emprunte;
     }
 
-    public void setEmprunte(boolean emprunte) {
+    public void setEmprunte(int emprunte) {
         this.emprunte = emprunte;
     }
     

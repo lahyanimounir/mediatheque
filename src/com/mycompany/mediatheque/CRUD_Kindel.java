@@ -1,15 +1,57 @@
 package com.mycompany.mediatheque;
 
+import com.mycompany.mediatheque.config.Config_DATABASE;
+import com.mycompany.mediatheque.model.Kindel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author rachad
  */
 public class CRUD_Kindel {
-    
+
+    Connection con;
+
+    public CRUD_Kindel() throws SQLException {
+
+        con = DriverManager.getConnection(Config_DATABASE.db_URL,
+                Config_DATABASE.username,
+                Config_DATABASE.passwrd);
+    }
+
+    /*type_doc => livre , magasin, article*/
+    boolean Ajouter(Kindel c) throws SQLException {
+        Statement stmt = con.createStatement();
+        String query = "INSERT INTO `kindel`( `modele`, `mac`, `pouces`, `emprunte`) "
+                + "VALUES( "
+                + "'" + c.getModele() + "',"
+                + "'" + c.getMac() + "',"
+                + "'" + c.getPouces() + "',"
+                + "'" + c.isEmprunte() + "')";
+        System.out.print(query);
+
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated > 0;
+    }
+
+    boolean Modifier(Kindel c, int id) throws SQLException {
+        Statement stmt = con.createStatement();
+        String query = " UPDATE kindel "
+                + " SET modele='" + c.getModele()
+                + "', mac='" + c.getMac()
+                + "', pouces='" + c.getPouces()
+                + "', emprunte='" + c.isEmprunte()
+                + "' WHERE id = " + id + " ";
+
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated > 0;
+    }
 }
