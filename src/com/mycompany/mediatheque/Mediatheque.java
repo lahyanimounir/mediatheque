@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import com.mycompany.mediatheque.model.Etudiant;
 import com.mycompany.mediatheque.model.Livre;
 import com.mycompany.mediatheque.model.Professeur;
+import com.mycompany.mediatheque.model.Kindel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -43,9 +44,19 @@ public class Mediatheque {
       CRD.supprimer(1); */  
      
         /*Crud Document*/
-      CRUD_Document CRD = new CRUD_Document();
-      /*System.out.print(CRD.getAllDocuments());*/
-      System.out.print(CRD.getDucumentByTitle("titreLivre"));
+
+      /*CRUD_Document CRD = new CRUD_Document();
+      System.out.print(CRD.getAllDocuments());
+      System.out.print(CRD.getDucumentByTitle("titreLivre"));*/
+
+      /*CRUD_Document CRD = new CRUD_Document();
+     
+      Livre livre = new Livre("titreLivre","Soumya",1,"isbn","auteurs","url",2);*/
+      /*CRD.Ajouter(livre, "livre");
+      CRD.Modifier(livre, "magasin",1);*/
+      
+      
+
        /*Professeur p= new Professeur("professeur1", "123456", "a1258", "saad", "belefqih", "123985");
        System.out.println("ICI getEtudiantbyCin 1");
        System.out.println(p.toString());
@@ -57,8 +68,11 @@ public class Mediatheque {
        System.out.println("ICI getEtudiantbyCin 2");
        System.out.println(CRL.getEtudiantbyCin("A875"));*/
        
-       
-       
+       CRUD_Kindel KND = new CRUD_Kindel();
+     
+       Kindel kindle = new Kindel("green2iot", "00:11:22:33:44:55", 10);
+       KND.Modifier(kindle, 1);
+       //KND.Ajouter(kindle);
     }
     
 }
