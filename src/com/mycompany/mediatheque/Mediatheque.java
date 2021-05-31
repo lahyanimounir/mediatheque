@@ -75,6 +75,7 @@ public class Mediatheque {
        System.out.println("ICI getEtudiantbyCin 2");
        System.out.println(CRL.getEtudiantbyCin("A875"));*/
        
+
        /*CRUD_Kindel KND = new CRUD_Kindel();
      
        Kindel kindle = new Kindel("green3iot", "00:11:22:33:44:55", 10);
@@ -94,9 +95,13 @@ public class Mediatheque {
     /*Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
     System.out.println(formatter1.parse(sDate1));   */ 
   
-          CRUD_Client CRL= new CRUD_Client();
-     
-       emprunt.empunterKindel(3, 1, "2012-12-12");
+       CRUD_Client CRL= new CRUD_Client();
+          
+       CRUD_Kindel KND = new CRUD_Kindel();
+      
+               
+       emprunt.empunterKindel(CRL.getIdByCin("A875"), KND.getFirstAvailKindle(), "2012-12-12");
+
     }
     
 }
