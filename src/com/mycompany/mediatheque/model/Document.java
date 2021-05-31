@@ -12,24 +12,28 @@ import java.io.Serializable;
  * @author rachad
  */
 public abstract class Document implements Serializable {
-    
+   
     private String titre;
     private String editeur;
     private int edition;
     private String isbn;
-    private String[] auteurs;
+    private String auteurs;
     private String url;
     
     
-    public Document( String titre, String editeur,int edition,String isbn,String[] auteurs, String url){
+    
+    public Document(String titre, String editeur,int edition,String isbn,String auteurs, String url){
+      
         this.titre= new String(titre);
         this.editeur= new String(editeur);
         this.edition=edition;
         this.isbn=new String(isbn);
-        this.auteurs=auteurs;  
+        this.auteurs=new String(auteurs); 
         this.url= new String(url);
     }
 
+  
+    
     public String getTitre() {
         return titre;
     }
@@ -46,7 +50,7 @@ public abstract class Document implements Serializable {
         return isbn;
     }
 
-    public String[] getAuteurs() {
+    public String getAuteurs() {
         return auteurs;
     }
 
@@ -60,12 +64,8 @@ public abstract class Document implements Serializable {
     
     @Override
     public String toString(){
-        int len=this.auteurs.length;
-        String auts="";
-        for(int i=0;i<len;i++){
-            auts=auts+" auteurs"+(i+1)+" : "+this.auteurs[i];
-        }
-        return "Titre: "+ titre+" Editeur:"+ editeur+ " Edition:"+ edition+ "ISBN:"+isbn +" Auteurs :"+auts;
+       
+        return "Titre: "+ titre+" Editeur:"+ editeur+ " Edition:"+ edition+ "ISBN:"+isbn +" Auteurs :"+auteurs;
     }
     
     

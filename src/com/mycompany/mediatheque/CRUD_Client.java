@@ -85,7 +85,7 @@ public class CRUD_Client {
        Etudiant e= null;
 
     while (rs.next()) {
-        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+        e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
     }
     return e;
     }
@@ -96,7 +96,7 @@ public class CRUD_Client {
        Etudiant e= null;
 
     while (rs.next()) {
-        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+        e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
     }
     return e;
     }
@@ -107,7 +107,7 @@ public class CRUD_Client {
     ResultSet rs = stmt.executeQuery("select * from users where profile = 'etudiant'");
     LinkedList<Etudiant> Liste= new  LinkedList<> ();
     while (rs.next()) {
-      Etudiant e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+      Etudiant e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
       Liste.add(e);
 
     }
@@ -115,48 +115,60 @@ public class CRUD_Client {
     }
     
     
-   /*   boolean Modifier(Client c) throws SQLException{
+      boolean Modifier(Utilisateur c) throws SQLException{
     Statement stmt = con.createStatement();
     String query="";
     
     if (c instanceof Etudiant){
-      query=" UPDATE etudiant "+
-             " SET nom='"+c.getNom()+
-             " , SET prenom='"+c.getPrenom()+
-             " , SET login='"+c.getLogin()+
-             " , SET password='"+c.getPassword()+
-             " WHERE cin like '"+c.getCin()+"' ";
+        
+      query=" UPDATE users "+
+             " SET nom='"+((Client)c).getNom()+             
+             "', cin='"+((Client)c).getCin()+              
+             "', prenom='"+((Client)c).getPrenom()+
+             "', login='"+c.getLogin()+
+             "', password='"+c.getPassword()+ 
+              
+             "', cne='"+((Etudiant)c).getCne()+
+             "', fillier='"+((Etudiant)c).getFillier()+
+             "' WHERE id = "+((Etudiant)c).getId()+" ";
     }
     else  if (c instanceof Professeur){
       query=" UPDATE professeur "+
-             " SET nom='"+c.getNom()+
-             " , SET prenom='"+c.getPrenom()+
+             " SET nom='"+((Client)c).getNom()+
+             " , SET prenom='"+((Client)c).getPrenom()+
              " , SET login='"+c.getLogin()+
              " , SET password='"+c.getPassword()+
-             " WHERE cin like '"+c.getCin()+"' ";
+             " WHERE cin like '"+((Client)c).getCin()+"' ";
+    }else if(c instanceof Gerant){
+        
+          query= "INSERT INTO `users`( `password`, `login`, `cin`, `cne`, `nom`, `prenom`, `profile`, `role`, `fillier`) VALUES( "
+                +"'"+ c.getPassword()+"',"+ 
+                "'"+ c.getLogin()+"',"+ 
+                "'"+ ((Client)c).getCin()+"',"+ 
+                "'"+ ((Client)c).getNom()+"',"+ 
+                "'"+ ((Client)c).getPrenom()+"',"+ 
+                "',gerant','role_gerant')'";
+          
     }
     
     int nbUpdated = stmt.executeUpdate(query);
     return nbUpdated>0;
     }
     
-    boolean supprimer(Client c) throws SQLException{
+    boolean supprimer(int id) throws SQLException{
         
         
         Statement stmt = con.createStatement();
         String query="";
     
-    if (c instanceof Etudiant){
-      query=" DELETE FROM etudiant WHERE cin like '"+c.getCin()+"' ";
-    }
-    else  if (c instanceof Professeur){
-      query=" DELETE FROM professeur WHERE cin like '"+c.getCin()+"' ";
-    }
+    
+      query=" DELETE FROM users WHERE id = '"+id+"' ";
+   
     
     int nbUpdated = stmt.executeUpdate(query);
     return nbUpdated>0;
     }
-    */
+  /*  */
   
     
     

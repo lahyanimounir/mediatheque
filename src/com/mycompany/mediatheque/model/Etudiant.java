@@ -14,15 +14,16 @@ public class Etudiant extends Client{
     private String cne;
     private String fillier;
     
-    public Etudiant(String login, String password, String cin, String  nom, String  prenom, String cne,String fillier){
+    public Etudiant(int id,String login, String password, String cin, String  nom, String  prenom, String cne,String fillier){
         super(login, password, cin, nom, prenom);
+        this.id = id;
         this.cne= new String(cne);        
         this.fillier= new String(fillier);
     }
     
     @Override
       public String toString(){
-        return super.toString()+" CNE: "+cne;
+        return super.toString()+" CNE: "+cne+" id: "+id+" fillier: "+fillier;
     } 
 
     public String getCne() {
