@@ -6,6 +6,13 @@ import com.mycompany.mediatheque.model.Etudiant;
 import com.mycompany.mediatheque.model.Livre;
 import com.mycompany.mediatheque.model.Professeur;
 import com.mycompany.mediatheque.model.Kindel;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +26,7 @@ import com.mycompany.mediatheque.model.Kindel;
  */
 public class Mediatheque {
     
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, ParseException{
         /*add ETD*/
       /* Etudiant etd = new Etudiant("Soumia","123456","A123","Soumya","Talha","154","Math");
        CRUD_Client CRL= new CRUD_Client();
@@ -68,11 +75,28 @@ public class Mediatheque {
        System.out.println("ICI getEtudiantbyCin 2");
        System.out.println(CRL.getEtudiantbyCin("A875"));*/
        
-       CRUD_Kindel KND = new CRUD_Kindel();
+       /*CRUD_Kindel KND = new CRUD_Kindel();
      
-       Kindel kindle = new Kindel("green2iot", "00:11:22:33:44:55", 10);
-       KND.Modifier(kindle, 1);
-       //KND.Ajouter(kindle);
+       Kindel kindle = new Kindel("green3iot", "00:11:22:33:44:55", 10);
+       //KND.Modifier(kindle, 1);
+       KND.Ajouter(kindle);*/
+       
+      
+   
+      CRUD_Emprunt emprunt = new CRUD_Emprunt();
+       
+      /*  String sDate1="2021-06-01";  
+       SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");  
+       Date date1=formatter1.parse(sDate1);  
+       */
+  /* SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");  
+       String sDate1="";  
+    /*Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+    System.out.println(formatter1.parse(sDate1));   */ 
+  
+          CRUD_Client CRL= new CRUD_Client();
+     
+       emprunt.empunterKindel(3, 1, "2012-12-12");
     }
     
 }

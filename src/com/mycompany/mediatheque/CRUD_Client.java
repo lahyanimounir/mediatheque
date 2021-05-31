@@ -170,6 +170,17 @@ public class CRUD_Client {
     }
   /*  */
   
-    
+     int getIdByCin( String cin ) throws SQLException{
+       Statement stmt = con.createStatement();
+       ResultSet rs = stmt.executeQuery("select * from users where cin = '"+cin+"' and profile = 'etudiant' or profile = 'proffesseur'");
+       //Etudiant e= null;
+       int id = 0;
+
+    while (rs.next()) {
+        id = rs.getInt("id");
+        //e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+    }
+    return id;
+    }
     
 }
