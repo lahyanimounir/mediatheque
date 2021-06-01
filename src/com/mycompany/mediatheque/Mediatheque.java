@@ -6,6 +6,7 @@ import com.mycompany.mediatheque.model.Etudiant;
 import com.mycompany.mediatheque.model.Livre;
 import com.mycompany.mediatheque.model.Professeur;
 import com.mycompany.mediatheque.model.Kindel;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +27,12 @@ import java.util.Locale;
  */
 public class Mediatheque {
     
-    public static void main(String[] args) throws SQLException, ParseException{
+    public static void main(String[] args) throws SQLException, ParseException, IOException{
+        
+        Server srv = new Server();
+        
+        srv.startServer();
+        
         /*add ETD*/
       /* Etudiant etd = new Etudiant("Soumia","123456","A123","Soumya","Talha","154","Math");
        CRUD_Client CRL= new CRUD_Client();
@@ -84,7 +90,7 @@ public class Mediatheque {
        
       
    
-      CRUD_Emprunt emprunt = new CRUD_Emprunt();
+      //CRUD_Emprunt emprunt = new CRUD_Emprunt();
        
       /*  String sDate1="2021-06-01";  
        SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");  
@@ -95,13 +101,13 @@ public class Mediatheque {
     /*Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
     System.out.println(formatter1.parse(sDate1));   */ 
   
-       CRUD_Client CRL= new CRUD_Client();
+     /*  CRUD_Client CRL= new CRUD_Client();
           
        CRUD_Kindel KND = new CRUD_Kindel();
       
                
        emprunt.empunterKindel(CRL.getIdByCin("A875"), KND.getFirstAvailKindle(), "2012-12-12");
-
+*/
     }
     
 }

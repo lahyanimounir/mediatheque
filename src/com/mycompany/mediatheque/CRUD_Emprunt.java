@@ -50,6 +50,9 @@ public class CRUD_Emprunt {
    
     
         int nbUpdated = stmt.executeUpdate(query);
+        
+        CRUD_Kindel KND = new CRUD_Kindel();
+        KND.updateKindleEmprunte(kindel_id, 1);
         return nbUpdated>0;
     
     } 

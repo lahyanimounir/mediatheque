@@ -55,6 +55,16 @@ public class CRUD_Kindel {
         int nbUpdated = stmt.executeUpdate(query);
         return nbUpdated > 0;
     }
+    
+    boolean updateKindleEmprunte(int id, int emprunte) throws SQLException {
+        Statement stmt = con.createStatement();
+        String query = " UPDATE kindel "
+                + " SET emprunte='" + emprunte
+                + "' WHERE id = " + id + " ";
+
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated > 0;
+    }
 
     int getFirstAvailKindle() throws SQLException {
         Statement stmt = con.createStatement();
