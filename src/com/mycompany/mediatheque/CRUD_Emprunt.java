@@ -5,6 +5,8 @@ import com.mycompany.mediatheque.model.Client;
 import com.mycompany.mediatheque.model.Kindel;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -33,7 +35,7 @@ public class CRUD_Emprunt {
             Config_DATABASE.passwrd);
 }
 /*type_doc => livre , magasin, article*/
-   boolean empunterKindel(int client_id,int kindel_id,String mydate) throws SQLException{
+   int empunterKindel(int client_id,int kindel_id,String mydate) throws SQLException{
     Statement stmt = con.createStatement();
     String query="";
     
@@ -48,12 +50,25 @@ public class CRUD_Emprunt {
                 "'"+ mydate +"')";
                 System.out.print(query);
    
-    
-        int nbUpdated = stmt.executeUpdate(query);
+        PreparedStatement ps = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+          
+            ps.execute();
+     
+            ResultSet rs = ps.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+           // System.out.print(generatedKey);
+        //int nbUpdated = stmt.executeUpdate(query);
+        //System.out.print(nbUpdated);
+        
+        
         
         CRUD_Kindel KND = new CRUD_Kindel();
         KND.updateKindleEmprunte(kindel_id, 1);
-        return nbUpdated>0;
+        
+        return generatedKey;
     
     } 
 }

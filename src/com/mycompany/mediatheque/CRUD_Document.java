@@ -94,16 +94,29 @@ public class CRUD_Document {
         return nbUpdated > 0;
     }
 
-    LinkedList<Livre> getDucumentByTitle(String titre) throws SQLException {
+    LinkedList<String> getDucumentByTitle(String titre) throws SQLException {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from doc where titre = '" + titre + "'");
 
-        LinkedList<Livre> myListe = new LinkedList<>();
+        LinkedList<String> myListe = new LinkedList<>();
 
+        
+        
         while (rs.next()) {
-            int variable = Integer.parseInt(rs.getString("edition"));
-            Livre l = new Livre(rs.getString("titre"), rs.getString("editeur"), variable, rs.getString("isbn"), rs.getString("auteur"), rs.getString("url"), rs.getInt("nbPages"), rs.getString("type_doc"));
-            myListe.add(l);
+            //int variable = Integer.parseInt(rs.getString("edition"));
+            myListe.add(rs.getString("id"));  
+            myListe.add(rs.getString("titre"));  
+            myListe.add(rs.getString("editeur"));  
+            myListe.add(rs.getString("edition"));
+            myListe.add(rs.getString("isbn"));
+            myListe.add(rs.getString("auteur"));            
+            myListe.add(rs.getString("url"));            
+            myListe.add(rs.getString("nbPages"));            
+            myListe.add(rs.getString("type_doc"));
+
+
+           // Livre l = new Livre(rs.getInt("id"),rs.getString("titre"), rs.getString("editeur"), variable, rs.getString("isbn"), rs.getString("auteur"), rs.getString("url"), rs.getInt("nbPages"), rs.getString("type_doc"));
+            //myListe.add(l);
 
         }
         return myListe;

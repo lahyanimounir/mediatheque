@@ -23,16 +23,7 @@ public class Server {
 
     public void startServer() throws IOException, SQLException {
         int port = 1000;
-        /*ServerSocket srvsocket = new ServerSocket(port);
-        System.out.println("Serveur active sur le port " + port);*/
-
-        // System.out.println("doc list" + docs);
-        // initialize socket
-        //Socket soc = srvsocket.accept();
-        /*if(Socket soc){
-            ThreadCreator tc = new ThreadCreator();
-            tc.getThread();
-        }*/
+       
         while (true) {
             try ( ServerSocket serverSocket = new ServerSocket(port)) {
 

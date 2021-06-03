@@ -182,5 +182,26 @@ public class CRUD_Client {
     }
     return id;
     }
+     
+       int login( String username,String password) throws SQLException{
+       Statement stmt = con.createStatement();
+       ResultSet rs = stmt.executeQuery("select * from users where login = '"+username+"' and password = '"+password+"' and profile = 'etudiant' or profile = 'proffesseur'");
+       int id_user = 999999;
+       int id_emprunt = 99999;
+        while (rs.next()) {
+            id_user=rs.getInt("id");
+        }
+        if(id_user != 999999 ){
+             
+             CRUD_Kindel kindel =  new CRUD_Kindel();
+             int id_kindel = kindel.getFirstAvailKindle();
+             
+             CRUD_Emprunt emprunt = new CRUD_Emprunt();
+             id_emprunt = emprunt.empunterKindel(id_user,id_kindel , "2012-12-12");
+                          
+             
+        }
+       return id_emprunt;
+      }
     
 }

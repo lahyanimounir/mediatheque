@@ -43,7 +43,7 @@ public class ServerThread extends Thread {
             PrintWriter writer = new PrintWriter(output, true);
             CRUD_Document DOCS = new CRUD_Document();
 
-            System.out.println("message to extract " + message.split(",")[0]);
+         System.out.print(message);
             if (message.equals("getdocuments")) {
                 LinkedList<Livre> docs = DOCS.getAllDocuments();
 
@@ -51,12 +51,36 @@ public class ServerThread extends Thread {
                 writer.println(docs.toString());
                 //sortie.write(docs.toString());
             } else if (message.split(",")[0].equals("consultdoc")) {
-                String title = message.split(",")[1];
-                System.out.println("doc title " + title);
-                LinkedList<Livre> doc = DOCS.getDucumentByTitle(title);
+                String title = message.split(",")[1];                
+                String id_emprunt = message.split(",")[2];
 
-                System.out.println("doc title " + doc.toString());
+                System.out.println("doc title " + title);
+                
+                
+                CRUD_Consultation consultation = new CRUD_Consultation();
+                
+                LinkedList<String> doc = DOCS.getDucumentByTitle(title);
+                consultation.Ajouter(id_emprunt,doc.get(0));
+               
                 writer.println(doc.toString());
+            } else if (message.split(",")[0].equals("login")) {
+                String username = message.split(",")[1];
+                String password = message.split(",")[2];
+                CRUD_Client crud_client = new CRUD_Client();
+               
+
+                int id_emprunt = crud_client.login(username,password);
+                System.out.println("id_emprunt_from_server"+id_emprunt);
+                if(id_emprunt != 99999){
+                    Integer i = new Integer(id_emprunt);
+                    System.out.println("id " + id_emprunt);
+                    writer.println(String.valueOf(i));
+                }
+                
+                //LinkedList<Livre> doc = DOCS.getDucumentByTitle(title);
+                
+               // System.out.println("doc title " + doc.toString());
+               // writer.println(doc.toString());
             }
 
             soc.close();
