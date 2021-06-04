@@ -29,9 +29,9 @@ public class Mediatheque {
     
     public static void main(String[] args) throws SQLException, ParseException, IOException{
         
-        Server srv = new Server();
+       // Server srv = new Server();
         
-        srv.startServer();
+       // srv.startServer();
         
         /*add ETD*/
       /* Etudiant etd = new Etudiant("Soumia","123456","A123","Soumya","Talha","154","Math");
@@ -40,9 +40,9 @@ public class Mediatheque {
        
       
        /*read ETD*/
-    /*    CRUD_Client CRL= new CRUD_Client();
-       System.out.print(CRL.getUserByCin("A123","etudiant"));
-       Etudiant etd = new Etudiant(5,"Soumia","123456","P456","Soumya","Talha","154","Math");
+        CRUD_Client CRL= new CRUD_Client();
+       System.out.print(CRL.getUserByCin("AB963"));
+       /*Etudiant etd = new Etudiant(5,"Soumia","123456","P456","Soumya","Talha","154","Math");
        CRL.Modifier(etd);
        CRL.supprimer(5);
        System.out.print(CRL.getAllEtudiants());*/

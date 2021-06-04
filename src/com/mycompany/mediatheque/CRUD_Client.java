@@ -79,15 +79,30 @@ public class CRUD_Client {
         int nbUpdated = stmt.executeUpdate(query);
         return nbUpdated>0;
     }
-    Client getUserByCin( String cin , String profile) throws SQLException{
-       Statement stmt = con.createStatement();
-       ResultSet rs = stmt.executeQuery("select * from users where cin = '"+cin+"' and profile = '"+profile+"'");
-       Etudiant e= null;
+    LinkedList<String> getUserByCin(String cin) throws SQLException {
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from users where cin = '"+cin+"'");
 
-    while (rs.next()) {
-        e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
-    }
-    return e;
+        LinkedList<String> myListe = new LinkedList<>();
+
+        
+        
+        while (rs.next()) {
+           
+            myListe.add(rs.getString("id"));  
+            myListe.add(rs.getString("login"));  
+            myListe.add(rs.getString("password"));  
+            myListe.add(rs.getString("cin"));
+            myListe.add(rs.getString("cne"));
+            myListe.add(rs.getString("nom"));            
+            myListe.add(rs.getString("prenom"));            
+            myListe.add(rs.getString("matricule"));            
+            myListe.add(rs.getString("profile"));
+            myListe.add(rs.getString("role"));
+            myListe.add(rs.getString("fillier"));
+     
+        }
+        return myListe;
     }
     
    Client getEtudiantbyCne( String cne) throws SQLException{
@@ -96,7 +111,7 @@ public class CRUD_Client {
        Etudiant e= null;
 
     while (rs.next()) {
-        e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+        e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
     }
     return e;
     }
@@ -107,7 +122,7 @@ public class CRUD_Client {
     ResultSet rs = stmt.executeQuery("select * from users where profile = 'etudiant'");
     LinkedList<Etudiant> Liste= new  LinkedList<> ();
     while (rs.next()) {
-      Etudiant e=new Etudiant(rs.getInt("id"),rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
+      Etudiant e=new Etudiant(rs.getString("login"),rs.getString("password"),rs.getString("cin"),rs.getString("nom"),rs.getString("prenom"),rs.getString("cne"),rs.getString("fillier"));
       Liste.add(e);
 
     }
@@ -115,7 +130,7 @@ public class CRUD_Client {
     }
     
     
-      boolean Modifier(Utilisateur c) throws SQLException{
+      boolean Modifier(Utilisateur c,int id) throws SQLException{
     Statement stmt = con.createStatement();
     String query="";
     
@@ -130,24 +145,26 @@ public class CRUD_Client {
               
              "', cne='"+((Etudiant)c).getCne()+
              "', fillier='"+((Etudiant)c).getFillier()+
-             "' WHERE id = "+((Etudiant)c).getId()+" ";
+             "' WHERE id = "+id+" ";
     }
     else  if (c instanceof Professeur){
-      query=" UPDATE professeur "+
+      query=" UPDATE users "+
              " SET nom='"+((Client)c).getNom()+
-             " , SET prenom='"+((Client)c).getPrenom()+
-             " , SET login='"+c.getLogin()+
-             " , SET password='"+c.getPassword()+
-             " WHERE cin like '"+((Client)c).getCin()+"' ";
+             "',  prenom='"+((Client)c).getPrenom()+
+             "',  login='"+c.getLogin()+
+             "',  password='"+c.getPassword()+
+              "' WHERE id = "+id+" ";
+      System.out.println(query);
     }else if(c instanceof Gerant){
         
-          query= "INSERT INTO `users`( `password`, `login`, `cin`, `cne`, `nom`, `prenom`, `profile`, `role`, `fillier`) VALUES( "
-                +"'"+ c.getPassword()+"',"+ 
-                "'"+ c.getLogin()+"',"+ 
-                "'"+ ((Client)c).getCin()+"',"+ 
-                "'"+ ((Client)c).getNom()+"',"+ 
-                "'"+ ((Client)c).getPrenom()+"',"+ 
-                "',gerant','role_gerant')'";
+          query= "UPDATE users"
+                +" SET password='"+ c.getPassword()+
+                "', login='"+ c.getLogin()+
+                "', cin='"+ ((Gerant)c).getCin()+
+                "', nom='"+ ((Gerant)c).getNom()+
+                "', prenom='"+ ((Gerant)c).getPrenom()+ 
+              
+                "' WHERE id = "+id+" ";
           
     }
     
