@@ -78,4 +78,16 @@ public class CRUD_Kindel {
 
         return id;
     }
+    
+    public boolean retourKindel(int id_kindel,String date_retour,int id_emprunt) throws SQLException{
+        this.updateKindleEmprunte(id_kindel,0);
+        
+        Statement stmt = con.createStatement();
+        String query = " UPDATE emprunt "
+                + " SET heur_retour='" + date_retour
+                + "' WHERE id = " + id_emprunt + " ";
+
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated > 0;
+    }
 }

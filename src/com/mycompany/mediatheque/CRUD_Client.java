@@ -220,5 +220,20 @@ public class CRUD_Client {
         }
        return id_emprunt;
       }
+       
+       
+         String getRole( String username,String password) throws SQLException{
+       Statement stmt = con.createStatement();
+       ResultSet rs = stmt.executeQuery("select * from users where login = '"+username+"' and password = '"+password+"'");
+       String role = "";
+      
+        while (rs.next()) {
+            role=rs.getString("profile");
+        }
+      
+       return role;
+      }
+       
+       
     
 }
