@@ -97,6 +97,7 @@ public class ServerThread extends Thread {
                 CRUD_Client CRL= new CRUD_Client();
                String client = message.split(",")[2];
               Object obj=client;
+              
               System.out.println("===================");
                System.out.println(obj); 
                System.out.println("===================");
