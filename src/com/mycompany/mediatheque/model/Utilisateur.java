@@ -9,7 +9,7 @@ package com.mycompany.mediatheque.model;
  *
  * @author rachad
  */
-public abstract class  Utilisateur {
+public abstract class  Utilisateur  {
 private String login;
 private String password;
 
