@@ -55,7 +55,18 @@ public class CRUD_Kindel {
         int nbUpdated = stmt.executeUpdate(query);
         return nbUpdated > 0;
     }
-    
+
+    boolean supprimer(int id) throws SQLException {
+
+        Statement stmt = con.createStatement();
+        String query = "";
+
+        query = " DELETE FROM kindel WHERE id = '" + id + "' ";
+
+        int nbUpdated = stmt.executeUpdate(query);
+        return nbUpdated > 0;
+    }
+
     boolean updateKindleEmprunte(int id, int emprunte) throws SQLException {
         Statement stmt = con.createStatement();
         String query = " UPDATE kindel "
@@ -78,10 +89,10 @@ public class CRUD_Kindel {
 
         return id;
     }
-    
-    public boolean retourKindel(int id_kindel,String date_retour,int id_emprunt) throws SQLException{
-        this.updateKindleEmprunte(id_kindel,0);
-        
+
+    public boolean retourKindel(int id_kindel, String date_retour, int id_emprunt) throws SQLException {
+        this.updateKindleEmprunte(id_kindel, 0);
+
         Statement stmt = con.createStatement();
         String query = " UPDATE emprunt "
                 + " SET heur_retour='" + date_retour
